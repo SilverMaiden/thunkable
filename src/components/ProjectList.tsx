@@ -6,7 +6,6 @@ import ProjectItem from "./ProjectItem";
 
 const ProjectList = () => {
   const projects = useSelector(selectProjects);
-  const lastProjectId = projects[projects.length - 1]?.id;
   const dispatch = useDispatch();
 
   const handleDragEnd = (result: { destination: any; source?: any }) => {
@@ -22,7 +21,7 @@ const ProjectList = () => {
   };
 
   return (
-    <div style={{display: "flex", justifyContent: "center", alignContent: "center", border: "3px purple solid"}}>
+    <div className="projectList">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="projectList">
           {(provided) => (
@@ -41,7 +40,6 @@ const ProjectList = () => {
                     >
                       <ProjectItem
                         project={project}
-                        //isEditing={project.id === lastProjectId}
                       />
                     </div>
                   )}

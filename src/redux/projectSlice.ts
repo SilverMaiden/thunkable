@@ -1,9 +1,9 @@
-// src/redux/projectSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface Project {
   id: number;
   name: string;
+  createdAt: string; // Added this line
 }
 
 interface ProjectState {
@@ -24,7 +24,8 @@ export const projectSlice = createSlice({
       },
       prepare: (name: string) => {
         const id = Date.now();
-        return { payload: { id, name } };
+        const createdAt = new Date().toISOString(); // Added this line
+        return { payload: { id, name, createdAt } }; // Added createdAt
       },
     },
     renameProject: (state, action: PayloadAction<{ id: number; newName: string }>) => {
